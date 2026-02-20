@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 도입 콜센터 노동 현장 실태</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;900&family=Noto+Sans+KR:wght@300;400;500;700&family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1714;
+    --paper: #f5f0e8;
+    --cream: #ede8dc;
+    --red: #c0392b;
+    --red-muted: #e8d5d2;
+    --gray: #6b6560;
+    --gray-light: #d4cfc6;
+    --accent: #2c4a6e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ─── MASTHEAD ─── */
+  .masthead {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 14px 48px;
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    border-bottom: 3px solid var(--red);
+  }
+  .masthead-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray-light);
+  }
+  .masthead-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--paper);
+  }
+  .masthead-note {
+    margin-left: auto;
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    color: var(--gray-light);
+    letter-spacing: 0.1em;
+    text-align: right;
+    line-height: 1.6;
+  }
+
+  /* ─── PAGE 1 ─── */
+  .page {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 0 60px;
+  }
+
+  /* Hero */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 2px solid var(--ink);
+  }
+  .hero-left {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 52px 44px 44px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    border: 60px solid rgba(192,57,43,0.15);
+  }
+  .issue-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 20px;
+    display: block;
+  }
+  .hero-headline {
+    font-family: 'DM Serif Display', serif;
+    font-size: 42px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-headline em {
+    font-style: italic;
+    color: #e8c5c0;
+  }
+  .hero-sub {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 13px;
+    color: var(--gray-light);
+    line-height: 1.8;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding-top: 16px;
+    margin-top: 16px;
+  }
+  .hero-right {
+    background: var(--red);
+    color: white;
+    padding: 44px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+  }
+  .stat-block {
+    border-left: 3px solid rgba(255,255,255,0.4);
+    padding-left: 16px;
+  }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 52px;
+    line-height: 1;
+    display: block;
+  }
+  .stat-label {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 12px;
+    opacity: 0.85;
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+
+  /* ─── SECTION LABEL ─── */
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  /* ─── COLUMNS LAYOUT ─── */
+  .columns-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-bottom: 1px solid var(--gray-light);
+  }
+  .col {
+    padding: 32px 28px;
+    border-right: 1px solid var(--gray-light);
+  }
+  .col:last-child { border-right: none; }
+
+  .col-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 60px;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 2px;
+    display: block;
+  }
+  .col-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.4;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--gray-light);
+  }
+  .col-body {
+    font-size: 13px;
+    color: #3a3530;
+    line-height: 1.75;
+  }
+
+  /* ─── WIDE CARD ─── */
+  .wide-card {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    border-bottom: 1px solid var(--gray-light);
+  }
+  .wide-card-left {
+    background: var(--accent);
+    color: white;
+    padding: 36px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .wide-card-left .big-label {
+    font-family: 'DM Serif Display', serif;
+    font-size: 80px;
+    line-height: 1;
+    opacity: 0.2;
+    position: absolute;
+  }
+  .wide-card-left .card-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    opacity: 0.6;
+    margin-bottom: 8px;
+  }
+  .wide-card-left .card-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  .wide-card-left .card-pull {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 14px;
+    opacity: 0.8;
+    margin-top: 16px;
+    line-height: 1.6;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 16px;
+  }
+  .wide-card-right {
+    padding: 36px 36px;
+  }
+  .wide-card-right .col-body {
+    font-size: 13.5px;
+  }
+
+  /* ─── QUOTE STRIP ─── */
+  .quote-strip {
+    background: var(--cream);
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    padding: 28px 48px;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+  }
+  .quote-mark {
+    font-family: 'DM Serif Display', serif;
+    font-size: 80px;
+    color: var(--red);
+    line-height: 0.6;
+    flex-shrink: 0;
+  }
+  .quote-text {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 16px;
+    font-style: italic;
+    line-height: 1.8;
+    color: var(--ink);
+  }
+  .quote-source {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: var(--gray);
+    margin-top: 8px;
+    display: block;
+  }
+
+  /* ─── TWO-COL MIXED ─── */
+  .two-col-mix {
+    display: grid;
+    grid-template-columns: 5fr 4fr;
+    border-bottom: 1px solid var(--gray-light);
+  }
+  .two-col-mix .col { border-right: 1px solid var(--gray-light); }
+  .two-col-mix .col:last-child { border-right: none; }
+
+  /* ─── DATA ROW ─── */
+  .data-row {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--gray-light);
+  }
+  .data-cell {
+    flex: 1;
+    padding: 24px 28px;
+    border-right: 1px solid var(--gray-light);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .data-cell:last-child { border-right: none; }
+  .data-cell .big-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    color: var(--red);
+    display: block;
+    line-height: 1.1;
+  }
+  .data-cell .data-desc {
+    font-size: 12px;
+    color: var(--gray);
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+
+  /* ─── DARK SECTION ─── */
+  .dark-section {
+    background: var(--ink);
+    color: var(--paper);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid #333;
+  }
+  .dark-col {
+    padding: 36px 32px;
+    border-right: 1px solid #333;
+  }
+  .dark-col:last-child { border-right: none; }
+  .dark-col .col-num { color: #2a2620; }
+  .dark-col .col-title {
+    color: var(--paper);
+    border-bottom-color: #333;
+  }
+  .dark-col .col-body { color: #c8c0b4; }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    background: var(--ink);
+    color: var(--gray-light);
+    padding: 20px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 3px solid var(--red);
+  }
+  .footer-note {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    line-height: 1.7;
+  }
+  .footer-sources {
+    font-family: 'Space Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.08em;
+    text-align: right;
+    line-height: 1.8;
+    color: #4a4540;
+  }
+
+  /* ─── PAGE DIVIDER ─── */
+  .page-divider {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 48px;
+    background: var(--cream);
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    margin-top: 0;
+  }
+  .page-divider-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gray);
+    white-space: nowrap;
+  }
+  .page-divider-line {
+    flex: 1;
+    height: 1px;
+    background: var(--gray-light);
+  }
+  .page-divider-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    color: var(--red);
+    line-height: 1;
+  }
+
+  /* ─── INTRO BAND ─── */
+  .intro-band {
+    padding: 28px 48px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--gray-light);
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+  }
+  .intro-label-vert {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    flex-shrink: 0;
+  }
+  .intro-text {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 14.5px;
+    line-height: 1.9;
+    color: #3a3530;
+    max-width: 720px;
+  }
+  .intro-text strong {
+    font-weight: 600;
+    color: var(--ink);
+  }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <span class="masthead-label">특별 보고서</span>
+  <span class="masthead-title">AI & 노동 현장</span>
+  <div class="masthead-note">
+    본 자료는 2024–2026년 발표된 실태조사 및<br>
+    언론 보도를 바탕으로 재구성한 요약입니다.
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-left">
+      <span class="issue-tag">AI 도입 콜센터 노동 실태</span>
+      <h1 class="hero-headline">
+        콜센터,<br>AI 도입 후<br><em>노동의 변화는?<br></em>
+      </h1>
+      <p class="hero-sub">
+        기업들은 AI 도입이 상담사의 일을 덜어줄 것이라고 했다.<br>
+        현장의 현실은 달랐다.
+      </p>
+    </div>
+    <div class="hero-right">
+      <div class="stat-block">
+        <span class="stat-num">60.8%</span>
+        <div class="stat-label">AI 도입 후 노동조건이<br><strong>악화됐다</strong>고 응답한 상담사 비율</div>
+      </div>
+      <div class="stat-block">
+        <span class="stat-num">1.5%</span>
+        <div class="stat-label">AI 도입 과정에서<br><strong>노사 협의가 있었다</strong>고 답한 비율</div>
+      </div>
+      <div class="stat-block">
+        <span class="stat-num">11,955</span>
+        <div class="stat-label">2020–2025, 5대 은행 콜센터에서<br><strong>떠난 사람의 수</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <div class="intro-band">
+    <span class="intro-label-vert">배경</span>
+    <p class="intro-text">
+      코로나19를 기점으로 은행, 카드사, 공공기관 등 전 산업에 걸쳐 AI 기반 콜센터 시스템이 본격 도입됐다. 기업들은 챗봇·음성봇·STT 분석 시스템이 <strong>상담사의 업무를 덜고 서비스를 개선할 것</strong>이라고 했다. AI 도입 3~4년이 지난 지금, 현장은 어떻게 달라졌는가.
+    </p>
+  </div>
+
+  <!-- A. AI 시스템 자체 문제 -->
+  <div class="page-divider">
+    <span class="page-divider-label">A — AI 시스템 자체의 문제</span>
+    <div class="page-divider-line"></div>
+    <span class="page-divider-num">A</span>
+  </div>
+
+  <!-- ① + ⑧ -->
+  <div class="columns-wrap">
+    <div class="col">
+      <span class="col-num">01</span>
+      <div class="col-title">AI 도입의 실제 효과<br>— 기업이 기대한 업무 효율, 오히려 떨어져</div>
+      <p class="col-body">
+        업무 속도가 개선됐다는 응답은 <strong>3.9~15.5%</strong>에 그쳤고, 개선되지 않았다는 응답은 <strong>40~74%</strong>에 달했다. AI 상담에 불만족한다는 고객은 54.2%, 인간 상담사를 선호한다는 응답은 87.5%였다. 글로벌 기준으로도 AI 프로젝트 중 기대치를 충족하는 경우는 20%에 불과하다.
+      </p>
+    </div>
+    <div class="col" style="grid-column: span 2; border-right: none;">
+      <span class="col-num">02</span>
+      <div class="col-title">'AI 뺑뺑이'로 인한 고객 분노 유발<br>— 고객 피해와 서비스 질 저하</div>
+      <p class="col-body">
+        AI가 고객을 이해하지 못하거나 번호 입력을 반복 요구하면서, 고객은 지쳐 분노한 채 상담사와 연결된다. 고령층에게는 더욱 불편한 구조다. AI 상담 경험 후 해당 기업과 <strong>거래를 끊었다는 응답도 13%</strong>에 달했다. "AI 뺑뺑이" 현상이 고객 경험을 악화시키고, 그 불만은 결국 상담사에게로 향한다.
+      </p>
+    </div>
+  </div>
+
+  <!-- B. 노동자에게 전가 -->
+  <div class="page-divider">
+    <span class="page-divider-label">B — 노동자에게 전가되는 구조</span>
+    <div class="page-divider-line"></div>
+    <span class="page-divider-num">B</span>
+  </div>
+
+  <!-- ② wide card -->
+  <div class="wide-card">
+    <div class="wide-card-left">
+      <div>
+        <div class="card-num">03</div>
+        <div class="card-title">'감정 쓰레기통' 전락한 상담사<br>— 감정노동의 심화</div>
+        <div class="card-pull">"은행이 자랑거리인 AI 덕분에 상담사들은 '죄송합니다'로 첫마디를 시작해야 한다."</div>
+      </div>
+    </div>
+    <div class="wide-card-right">
+      <p class="col-body">
+        AI를 거쳐 온 고객은 이미 화가 난 상태로 상담사와 연결된다. AI 도입 후 하루 평균 민원 건수는 <strong>17.9% 증가</strong>했고, 민원 유형은 짜증(58.5%), 화(34.6%), 욕설(14.6%)이 대부분이었다. 상담사 <strong>75%</strong>가 AI 관련 민원으로 스트레스를 경험했다. AI의 실패가 고스란히 상담사의 감정노동으로 전가되는 구조다.
+      </p>
+    </div>
+  </div>
+
+  <!-- data row -->
+  <div class="data-row">
+    <div class="data-cell">
+      <span class="big-num">21분 → 57분</span>
+      <span class="data-desc">AI 도입 전후<br>근무 후 하루 총 후처리 시간 변화</span>
+    </div>
+    <div class="data-cell">
+      <span class="big-num">6.95분 → 7.55분</span>
+      <span class="data-desc">건당 평균 상담 통화 시간 증가<br>(콜 수는 줄었지만, 난이도는 올라갔다)</span>
+    </div>
+    <div class="data-cell">
+      <span class="big-num">5.59분 → 12.46분</span>
+      <span class="data-desc">건별 후처리 시간<br>2배 이상 증가</span>
+    </div>
+  </div>
+
+  <!-- ③ ④ -->
+  <div class="two-col-mix">
+    <div class="col">
+      <span class="col-num">04</span>
+      <div class="col-title">콜은 줄었지만 일은 늘었다<br>— 노동강도 강화</div>
+      <p class="col-body">
+        AI가 단순 문의를 가져가면서 상담사에게 남겨진 것은 더 복잡하고 난이도가 높은 콜들이었다. 콜 수 감소가 상담 수요 감소가 아닌, AI 경유 과정에서 <strong>고객이 중간에 포기한 결과</strong>라는 지적도 있다. 채용 중단과 자연감소 유도로 인력이 줄어드는 동안, 업무 범위는 오히려 확대됐다.
+      </p>
+    </div>
+    <div class="col">
+      <span class="col-num">05</span>
+      <div class="col-title">AI 기술 결함인데, 부당 평가<br>— AI 오류의 책임 전가</div>
+      <p class="col-body">
+        AI가 잘못 안내한 내용을 수습하는 것도, AI 오류로 생긴 민원을 받는 것도 상담사의 몫이 됐다. '2018년'이라는 연도를 욕설로 인식해 <strong>상담사에게 감점을 부과</strong>한 사례도 있었다. STT 기록 오류 역시 상담사의 실적에 반영됐다.
+      </p>
+    </div>
+  </div>
+
+  <!-- quote -->
+  <div class="quote-strip">
+    <span class="quote-mark">"</span>
+    <div>
+      <p class="quote-text">상담을 하면 제 말과 고객의 말이 텍스트로 기록되고, 이 데이터로 AI 시스템을 고도화합니다. STT 저장 버튼을 누르지 않으면 콜 평가에서 감점을 받아 사실상 강제적으로 할 수밖에 없습니다.</p>
+      <span class="quote-source">— 콜센터 상담사 인터뷰</span>
+    </div>
+  </div>
+
+  <!-- ⑤ -->
+  <div class="wide-card" style="border-bottom: none;">
+    <div class="wide-card-left" style="background: #2a3f1a;">
+      <div>
+        <div class="card-num">06</div>
+        <div class="card-title">데이터 통제권 상실<br>— 10년 쌓은 노하우, 무단 탈취</div>
+        <div class="card-pull">상담사의 목소리와 노하우는 AI 학습 데이터가 됐다. 동의도, 고지도, 보상도 없었다.</div>
+      </div>
+    </div>
+    <div class="wide-card-right">
+      <p class="col-body">
+        STT·TA 시스템 도입으로 통화 내용 전체가 텍스트화되고 분석됐다. 상담사들의 말과 노하우는 AI 학습 데이터로 활용됐지만, 상담사들은 이 사실을 <strong>고지받지 못한 경우가 대부분</strong>이었다. 데이터는 회사가 수집하고, 상담사는 자신의 데이터가 어떻게 쓰이는지 알 수 없었다.
+      </p>
+    </div>
+  </div>
+
+  <!-- C. 구조 -->
+  <div class="page-divider" style="margin-top: 0; border-top: 2px solid var(--ink);">
+    <span class="page-divider-label">C — 도입 방식과 권력 구조의 문제</span>
+    <div class="page-divider-line"></div>
+    <span class="page-divider-num">C</span>
+  </div>
+
+  <!-- ⑨ ⑥ ⑦ dark -->
+  <div class="dark-section">
+    <div class="dark-col">
+      <span class="col-num">07</span>
+      <div class="col-title">불안정 노동자부터, 조용히<br>— 고용 불안과 감원</div>
+      <p class="col-body">
+        2020~2025년, 5대 은행 콜센터에서 <strong>11,955명</strong>이 떠났다. 감원은 정규직보다 비정규직·하청 직원에게 더 빠르고 크게 닥쳤다. 육아휴직 중인 상담사는 고용 승계 대상에서도 제외됐다. "콜 수가 줄었으니 사람을 줄여야 한다"는 논리가 반복됐다 — 그 콜 수 감소가 AI 뺑뺑이로 인한 고객 포기 때문이었음에도.
+      </p>
+    </div>
+    <div class="dark-col">
+      <span class="col-num">08</span>
+      <div class="col-title">하청·비정규직·여성 노동<br>— 구조적 취약성</div>
+      <p class="col-body">
+        콜센터 노동의 <strong>90%는 여성</strong>이고, 대부분 하청·용역 구조다. AI 도입의 수혜는 원청 기업이 가져가고, 비용과 고통은 말단 하청 노동자에게 집중됐다. 원청은 "도급계약이라 관여할 수 없다"며 책임을 회피했다. AI 도입이 이미 취약한 고용 구조 위에 얹혀 불평등을 심화시켰다.
+      </p>
+    </div>
+  </div>
+
+  <div class="dark-section" style="border-top: none; grid-template-columns: 1fr;">
+    <div class="dark-col" style="border-right: none;">
+      <span class="col-num">09</span>
+      <div class="col-title">상담사 의견은 배제됐다<br>— 도입 과정의 불투명성</div>
+      <p class="col-body" style="max-width: 640px;">
+        AI 도입과 관련해 <strong>노사 협의가 있었다는 응답은 1.5%</strong>에 불과했다. 79.2%는 사측으로부터 어떠한 설명이나 교육도 받지 못했다고 했다. 알고리즘이 어떻게 작동하는지, 자신의 데이터가 어떻게 쓰이는지, 평가 기준이 무엇인지 — 상담사들은 몰랐다. 기술 도입의 결정은 위에서 내려왔고, 그 결과는 아래에서 흡수됐다.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-note">
+    본 자료는 실제 보도 및 실태조사를 바탕으로 재구성한 요약입니다.<br>
+    특정 회사 또는 개인을 특정하거나 대표하지 않습니다.
+  </div>
+  <div class="footer-sources">
+    매일노동뉴스 2025.12.23 · 뉴시스 2026.01.22 · 노동과세계 2026.01.22<br>
+    한겨레 2024.06.04 · 경향신문 2024.01.07 · 산업일보 2024.08.12<br>
+    국민일보 2025.08.27 · 조선일보 위클리비즈 2025.02.27 · BBC코리아 2025.11.08
+  </div>
+</div>
+
+</body>
+</html>
